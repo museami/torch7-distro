@@ -6,7 +6,9 @@ SET(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" "${CMAKE_MODULE_PATH}"
 
 SET(WITH_CUDA ON CACHE BOOL "Build CUDA packages")
 IF($ENV{NOCUDA})
-  SET(WITH_CUDA OFF CACHE BOOL "Build CUDA packages")
+  message(STATUS "Found NOCUDA environment variable, disabling CUDA compile")  
+  SET(WITH_CUDA OFF CACHE BOOL "Build CUDA packages" FORCE)
+  message(STATUS "WITH_CUDA: ${WITH_CUDA}")
 ENDIF($ENV{NOCUDA})
 
 IF (WITH_CUDA)
